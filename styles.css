@@ -107,7 +107,7 @@ h1 {
   padding: 10px 8px;
   text-align: center;
 }
-.style-meta dt { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-soft); }
+.style-meta dt { font-size: 10px; letter-spacing: 0.04em; white-space: nowrap; text-transform: uppercase; color: var(--ink-soft); }
 .style-meta dd { margin: 4px 0 0; font-size: 13px; font-weight: 600; }
 
 .btn {

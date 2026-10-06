@@ -1,19 +1,19 @@
 # CAPPED
 
-**See the style. Before you commit.**
+**See the cut. Before the clippers.**
 
-CAPPED is a concept for a virtual hair studio. You can switch between models with
-different face shapes, skin tones and textures, and preview the same hairstyle on each
+CAPPED is a concept for a virtual barber studio. You can switch between models with
+different face shapes, skin tones and textures, and preview the same modern haircut on each (mod cut, low taper, mullet, textured crop)
 before you sit in the chair.
 
 ## Features
 
 - Model switcher: see the same style on different faces
-- Hairstyle picker: the "Make it yours" panel, with live thumbnails
+- Haircut picker: the "Make it yours" panel, with live thumbnails
 - Before / after: a drag slider that compares the base photo with the styled one
-- Style details: length, install time, how long it lasts, upkeep
+- Style details: length, cut time, how long it stays fresh, upkeep
 - Save looks, and copy a share link (the URL keeps the model and style)
-- Keyboard: `←` / `→` cycle through styles
+- Keyboard: `←` / `→` cycle through cuts
 
 ## Run it
 

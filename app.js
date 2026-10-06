@@ -3,50 +3,50 @@
 // assets/models/<model-id>/<style-id>.jpg (see ASSET_PROMPTS.md).
 
 const MODELS = [
-  { id: "amara", name: "Amara", note: "Oval · Deep" },
-  { id: "mei", name: "Mei", note: "Heart · Light" },
+  { id: "jake", name: "Jake", note: "Square · Light" },
+  { id: "leo", name: "Leo", note: "Oval · Olive" },
 ];
 
 const STYLES = [
   {
-    id: "knotless-braids",
-    name: "Knotless Braids",
-    tag: "Protective",
-    desc: "Waist-length, medium knotless box braids. Lightweight at the root with a soft, natural part.",
-    length: "Long",
-    install: "5–7 hrs",
-    lasts: "6–8 wks",
-    upkeep: "Low",
-  },
-  {
-    id: "afro",
-    name: "Natural Afro",
-    tag: "Natural",
-    desc: "A full, rounded afro with defined coils. Big volume, shaped evenly around the face.",
+    id: "mod-cut",
+    name: "Mod Cut",
+    tag: "Trending",
+    desc: "A rounded, fringe-heavy shape with soft texture throughout. The fringe sits just above the brows, with tapered sides and back.",
     length: "Medium",
-    install: "1 hr",
-    lasts: "Daily",
+    install: "45 min",
+    lasts: "4–5 wks",
     upkeep: "Medium",
   },
   {
-    id: "sleek-bob",
-    name: "Sleek Bob",
-    tag: "Classic",
-    desc: "A glossy, chin-length blunt bob with a centre part. Sharp, polished, and easy to wear.",
+    id: "low-taper",
+    name: "Low Taper",
+    tag: "Clean",
+    desc: "A low taper fade at the temples and neckline with about 3 inches of textured length on top, pushed forward with a messy finish.",
     length: "Short",
-    install: "1.5 hrs",
+    install: "40 min",
+    lasts: "2–3 wks",
+    upkeep: "Low",
+  },
+  {
+    id: "mullet",
+    name: "Modern Mullet",
+    tag: "Bold",
+    desc: "A textured, choppy top with a burst fade around the ears and length left at the back, flowing to the nape.",
+    length: "Medium",
+    install: "50 min",
     lasts: "4–6 wks",
     upkeep: "Medium",
   },
   {
-    id: "curtain-waves",
-    name: "Curtain Waves",
-    tag: "Soft glam",
-    desc: "Long, layered soft waves with face-framing curtain bangs and plenty of movement.",
-    length: "Long",
-    install: "2 hrs",
-    lasts: "3–5 days",
-    upkeep: "High",
+    id: "textured-crop",
+    name: "Textured Crop",
+    tag: "Low effort",
+    desc: "A French crop with a mid skin fade, a choppy textured top and a short blunt fringe. Sharp, with almost zero styling.",
+    length: "Short",
+    install: "35 min",
+    lasts: "2–3 wks",
+    upkeep: "Low",
   },
 ];
 
@@ -143,7 +143,7 @@ function renderDetails() {
   $("metaLasts").textContent = s.lasts;
   $("metaUpkeep").textContent = s.upkeep;
   $("modelPillName").textContent = m.name;
-  styleImg.alt = `${m.name} wearing ${s.name}`;
+  styleImg.alt = `${m.name} with a ${s.name}`;
   baseImg.alt = `${m.name} before styling`;
 }
 

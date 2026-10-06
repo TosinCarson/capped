@@ -1,97 +1,86 @@
-# CAPPED — Nano Banana asset prompts
+# CAPPED: Nano Banana asset prompts
 
-10 images in total: one **base** photo per model, plus **4 hairstyle edits** of each base.
+There are 10 images in total: one **base** photo per model, plus **4 haircut edits** of each base.
+Paste **one prompt at a time**. Each prompt makes one image.
 
-## How to do it (important)
+## How to do it
 
-1. Generate the **base** photo for a model with a text-to-image prompt (Step 1).
-2. For each hairstyle, **upload that base photo** to Nano Banana and run the edit prompt (Step 2).
-   Always edit the *base*, never a previous hairstyle, so every image lines up perfectly.
-3. Export each image as **JPG, 4:5 portrait (e.g. 1600×2000)** and save it with the exact filename shown.
-4. Drop the files into the repo at `assets/models/<model>/` — the site picks them up automatically.
+1. Generate the **base** photo for a model with the text prompt in Step 1.
+2. For each haircut, start a new chat, **upload that base photo**, and paste the haircut prompt from Step 2.
+   Always edit the *base* photo, never a previous haircut, so every image lines up.
+3. Save each image as a **JPG, 4:5 portrait (e.g. 1600×2000)** with the exact filename shown.
+4. Put the files in `assets/models/<model>/`. The site picks them up automatically.
 
-If an edit changes the face, the clothes or the framing, re-run it. The whole effect depends on
-the same face in the same spot across every image.
+If an edit changes the face, the T-shirt or the framing, run it again. The whole effect depends on
+the same face sitting in the same spot in every image.
 
 ---
 
-## Step 1 — Base photos (text to image)
+## Step 1: Base photos (text to image)
 
-### Amara → `assets/models/amara/base.jpg`
+The base is a short buzz cut. It's the "before" shot, and it gives each edit a natural hairline to build from.
 
-```
-Photorealistic studio fashion portrait of a young West African woman in her mid-20s with deep
-dark-brown skin, an oval face, high cheekbones and a calm, neutral expression. Her head is
-completely clean-shaven and bald, smooth scalp, no hair. Front-facing, looking straight into
-the camera, shoulders square. Framed from the top of the head down to the mid-chest, with
-generous empty space above the head. She wears a simple cream oversized wool coat with a
-crew-neck cream knit underneath. Plain seamless warm light-grey studio backdrop (#EBE8E3).
-Soft, even, diffused beauty lighting, no harsh shadows. Shot on 85mm lens, f/4, sharp focus,
-natural skin texture, high-end e-commerce look. Portrait orientation 4:5. No jewellery, no
-text, no logos.
-```
-
-### Mei → `assets/models/mei/base.jpg`
+### Jake → `assets/models/jake/base.jpg`
 
 ```
-Photorealistic studio fashion portrait of a young East Asian woman in her mid-20s with light
-skin with warm undertones, a heart-shaped face and a calm, neutral expression. Her head is
-completely clean-shaven and bald, smooth scalp, no hair. Front-facing, looking straight into
-the camera, shoulders square. Framed from the top of the head down to the mid-chest, with
-generous empty space above the head. She wears a simple cream oversized wool coat with a
-crew-neck cream knit underneath. Plain seamless warm light-grey studio backdrop (#EBE8E3).
-Soft, even, diffused beauty lighting, no harsh shadows. Shot on 85mm lens, f/4, sharp focus,
-natural skin texture, high-end e-commerce look. Portrait orientation 4:5. No jewellery, no
-text, no logos.
+Photorealistic studio portrait of an American man in his mid-20s, light skin, light-brown hair cut in a very short even buzz cut (#2 guard), square jaw, light stubble, calm neutral expression. Front-facing, looking straight into the camera, shoulders square. Framed from the top of the head down to the mid-chest, with generous empty space above the head. He wears a plain fitted black crew-neck T-shirt. Plain seamless warm light-grey studio backdrop. Soft, even, diffused lighting, no harsh shadows. 85mm lens, sharp focus, natural skin texture, high-end barbershop lookbook style. Portrait orientation 4:5. No jewellery, no text, no logos.
+```
+
+### Leo → `assets/models/leo/base.jpg`
+
+```
+Photorealistic studio portrait of a Latino Canadian man in his mid-20s, olive skin, dark-brown hair cut in a very short even buzz cut (#2 guard), oval face, clean-shaven, calm neutral expression. Front-facing, looking straight into the camera, shoulders square. Framed from the top of the head down to the mid-chest, with generous empty space above the head. He wears a plain fitted black crew-neck T-shirt. Plain seamless warm light-grey studio backdrop. Soft, even, diffused lighting, no harsh shadows. 85mm lens, sharp focus, natural skin texture, high-end barbershop lookbook style. Portrait orientation 4:5. No jewellery, no text, no logos.
 ```
 
 ---
 
-## Step 2 — Hairstyle edits (upload the base photo, then prompt)
+## Step 2: Haircut edits (upload the base photo, then paste one prompt)
 
-Every edit prompt starts with this same lock line, followed by the hairstyle line. Copy both.
+Each prompt is complete. Copy the whole box. Use his natural hair colour from the base photo.
 
-**Lock line (use every time):**
-
+### `mod-cut.jpg`
 ```
-Edit this photo. Keep the exact same person, face, facial features, skin tone, expression,
-head position, pose, clothing, background, lighting, camera angle and framing — change
-nothing except adding hair. The hair must look completely real, naturally attached at the
-hairline, with realistic strands, shine and shadows that match the existing studio lighting.
+Edit this photo. Keep the exact same man, face, facial features, skin tone, stubble, expression, head position, pose, black T-shirt, background, lighting, camera angle and framing. Change only the hair. Give him a modern mod cut in his natural hair colour: a rounded, full shape with soft choppy texture, a heavy fringe falling forward to just above the eyebrows, hair covering the tops of the ears, and a soft taper at the neckline. The hair must look completely real, with natural strands, shine and shadows that match the studio lighting.
 ```
 
-**Then add one of these:**
+### `low-taper.jpg`
+```
+Edit this photo. Keep the exact same man, face, facial features, skin tone, stubble, expression, head position, pose, black T-shirt, background, lighting, camera angle and framing. Change only the hair. Give him a low taper fade in his natural hair colour: very short and tight at the temples and neckline, blending up into about 3 inches of length on top, styled forward with a messy textured finish and a slightly broken-up fringe. Crisp, clean line-up at the temples. The hair must look completely real, with natural strands, shine and shadows that match the studio lighting.
+```
 
-| Filename | Hairstyle line |
-|---|---|
-| `knotless-braids.jpg` | `Add long, waist-length medium knotless box braids in natural black (1B), with a neat centre part, braids falling over both shoulders and down the front of the coat.` |
-| `afro.jpg` | `Add a full, rounded natural afro in natural black, about 6 inches of volume, soft defined 4C coils, evenly shaped around the head, hairline visible.` |
-| `sleek-bob.jpg` | `Add a sleek, glossy, chin-length blunt bob in dark espresso brown with a straight centre part, ends cut perfectly straight at the jawline.` |
-| `curtain-waves.jpg` | `Add long, layered, soft loose waves in dark chocolate brown falling past the shoulders, with face-framing curtain bangs parted in the middle.` |
+### `mullet.jpg`
+```
+Edit this photo. Keep the exact same man, face, facial features, skin tone, stubble, expression, head position, pose, black T-shirt, background, lighting, camera angle and framing. Change only the hair. Give him a modern mullet in his natural hair colour: a short, choppy textured top with a slight fringe, a burst fade curving around the ears, and noticeably longer textured hair at the back flowing down to the nape of the neck, visible on both sides of the neck from the front. The hair must look completely real, with natural strands, shine and shadows that match the studio lighting.
+```
 
-Run all four for **Amara** (save into `assets/models/amara/`) and all four for **Mei**
-(save into `assets/models/mei/`).
+### `textured-crop.jpg`
+```
+Edit this photo. Keep the exact same man, face, facial features, skin tone, stubble, expression, head position, pose, black T-shirt, background, lighting, camera angle and framing. Change only the hair. Give him a textured French crop in his natural hair colour: a mid skin fade on the sides and back, a choppy, piecey textured top about 1.5 inches long, and a short blunt fringe cut straight across the upper forehead. Matte finish. The hair must look completely real, with natural strands and shadows that match the studio lighting.
+```
+
+Run all four for **Jake** (save them into `assets/models/jake/`) and all four for **Leo** (save them into `assets/models/leo/`).
 
 ---
 
 ## Checklist
 
 ```
-assets/models/amara/base.jpg
-assets/models/amara/knotless-braids.jpg
-assets/models/amara/afro.jpg
-assets/models/amara/sleek-bob.jpg
-assets/models/amara/curtain-waves.jpg
-assets/models/mei/base.jpg
-assets/models/mei/knotless-braids.jpg
-assets/models/mei/afro.jpg
-assets/models/mei/sleek-bob.jpg
-assets/models/mei/curtain-waves.jpg
+assets/models/jake/base.jpg
+assets/models/jake/mod-cut.jpg
+assets/models/jake/low-taper.jpg
+assets/models/jake/mullet.jpg
+assets/models/jake/textured-crop.jpg
+assets/models/leo/base.jpg
+assets/models/leo/mod-cut.jpg
+assets/models/leo/low-taper.jpg
+assets/models/leo/mullet.jpg
+assets/models/leo/textured-crop.jpg
 ```
 
 ## Tips
 
-- **Face drifted?** Add `Do not alter the face in any way.` to the end and re-run.
-- **Hair looks like a helmet/wig?** Add `Show individual strands and baby hairs at the hairline.`
-- **Framing shifted?** Add `Output must be the same size and crop as the input image.`
-- Keep file sizes under ~400 KB each (export JPG at ~80% quality) so the site stays fast.
+- **The face changed?** Add `Do not alter the face in any way.` to the end and run it again.
+- **The hair looks like a wig?** Add `Show individual strands and a natural, soft hairline.`
+- **The framing shifted?** Add `Output must be the same size and crop as the input image.`
+- **Leo is clean-shaven**, so in his edits you can delete the word "stubble" (it's fine to leave it in, though).
+- Keep each file under ~400 KB (export JPG at about 80% quality) so the site stays fast.
