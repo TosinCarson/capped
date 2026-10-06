@@ -4,11 +4,14 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>CAPPED — Virtual Barber Studio</title>
-  <meta name="description" content="CAPPED is a concept virtual barber studio. Preview modern haircuts across different faces before you sit in the chair.">
+  <meta name="description" content="CAPPED is a concept virtual barber studio. Try modern haircuts on different face shapes and skin tones in 3D before you sit in the chair.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <script type="importmap">
+    { "imports": { "three": "./vendor/three.module.min.js", "three/addons/": "./vendor/addons/" } }
+  </script>
 </head>
 <body>
   <header class="nav">
@@ -24,22 +27,22 @@
   </header>
 
   <main class="studio">
-    <!-- Left: copy + style details -->
+    <!-- Left: copy + cut details -->
     <section class="intro" aria-labelledby="headline">
       <p class="eyebrow">Virtual barber studio / 2026</p>
       <h1 id="headline">See the cut.<br>Before the clippers.</h1>
-      <p class="lede">Preview modern cuts across different faces and hair types before you sit in the barber's chair.</p>
+      <p class="lede">Try modern cuts on every face shape and skin tone. Spin it around, check the sides and the back, then sit in the chair.</p>
 
       <div class="style-card" aria-live="polite">
         <div class="style-card-head">
-          <h2 id="styleName">Mod Cut</h2>
-          <span class="style-tag" id="styleTag">Trending</span>
+          <h2 id="styleName"></h2>
+          <span class="style-tag" id="styleTag"></span>
         </div>
         <p class="style-desc" id="styleDesc"></p>
         <dl class="style-meta">
           <div><dt>Length</dt><dd id="metaLength"></dd></div>
-          <div><dt>Cut time</dt><dd id="metaInstall"></dd></div>
-          <div><dt>Fresh for</dt><dd id="metaLasts"></dd></div>
+          <div><dt>Cut time</dt><dd id="metaTime"></dd></div>
+          <div><dt>Fresh for</dt><dd id="metaFresh"></dd></div>
           <div><dt>Upkeep</dt><dd id="metaUpkeep"></dd></div>
         </dl>
         <button class="btn btn-primary" id="saveBtn" type="button">Save this look</button>
@@ -47,48 +50,68 @@
       </div>
     </section>
 
-    <!-- Center: stage -->
-    <section class="stage" aria-label="Preview">
+    <!-- Center: 3D stage -->
+    <section class="stage" aria-label="3D preview">
       <div class="watermark" aria-hidden="true">CAPPED</div>
 
       <div class="stage-top">
-        <div class="model-pill" id="modelPill">
-          <span class="model-dot"></span>
-          <span id="modelPillName">Jake</span>
+        <div class="model-pill">
+          <span id="modelPillName"></span>
+          <span class="pill-sub" id="modelPillFace"></span>
         </div>
-        <div class="view-toggle" role="tablist" aria-label="View mode">
-          <button role="tab" aria-selected="true" data-view="style" class="active">Style</button>
-          <button role="tab" aria-selected="false" data-view="compare">Before / After</button>
+        <div class="seg" role="group" aria-label="Before or after">
+          <button type="button" data-ba="after" class="active" aria-pressed="true">After</button>
+          <button type="button" data-ba="before" aria-pressed="false">Before</button>
         </div>
       </div>
 
       <div class="frame" id="frame">
-        <img class="shot shot-base" id="baseImg" alt="">
-        <img class="shot shot-style" id="styleImg" alt="">
-        <div class="compare-handle" id="compareHandle" aria-hidden="true"><span></span></div>
-        <input class="compare-range" id="compareRange" type="range" min="0" max="100" value="50" aria-label="Before and after slider">
-        <span class="compare-label left">Before</span>
-        <span class="compare-label right">After</span>
+        <canvas id="scene" aria-label="Character preview. Drag to rotate."></canvas>
+        <div class="drag-hint" id="dragHint" aria-hidden="true">Drag to rotate</div>
+        <div class="loading" id="loading">Loading studio…</div>
       </div>
 
-      <div class="model-switcher" role="radiogroup" aria-label="Choose a model" id="modelSwitcher"></div>
+      <div class="toolbar">
+        <div class="seg" role="group" aria-label="Camera angle" id="viewSeg">
+          <button type="button" data-angle="front">Front</button>
+          <button type="button" data-angle="left">Left</button>
+          <button type="button" data-angle="right">Right</button>
+          <button type="button" data-angle="back">Back</button>
+        </div>
+        <button type="button" class="icon-btn active" id="autoBtn" aria-pressed="true" title="Auto rotate">
+          <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.34-5.66M20 4v4h-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span>Auto</span>
+        </button>
+        <div class="seg" role="group" aria-label="Framing" id="frameSeg">
+          <button type="button" data-frame="head" class="active" aria-pressed="true">Head</button>
+          <button type="button" data-frame="body" aria-pressed="false">Full body</button>
+        </div>
+      </div>
+
+      <div class="model-switcher" role="radiogroup" aria-label="Choose a character" id="modelSwitcher"></div>
     </section>
 
-    <!-- Right: customizer panel -->
+    <!-- Right: customizer -->
     <aside class="panel" aria-labelledby="panelTitle">
       <p class="panel-eyebrow">Capped personal barber</p>
       <h2 id="panelTitle">Make it yours</h2>
-      <div class="panel-tabs">
-        <span class="active">Hair</span>
-        <span class="muted" title="Coming soon">Beard</span>
+      <div class="panel-tabs" role="tablist">
+        <button type="button" role="tab" aria-selected="true" data-tab="cut" class="active">Cut</button>
+        <button type="button" role="tab" aria-selected="false" data-tab="skin">Skin tone</button>
       </div>
-      <div class="style-grid" role="radiogroup" aria-label="Choose a haircut" id="styleGrid"></div>
-      <p class="hint">Tip: use <kbd>←</kbd> <kbd>→</kbd> to cycle cuts.</p>
+      <div class="tab-body" data-tab-body="cut">
+        <div class="style-grid" role="radiogroup" aria-label="Choose a haircut" id="styleGrid"></div>
+        <p class="hint">Tip: use <kbd>←</kbd> <kbd>→</kbd> to cycle cuts.</p>
+      </div>
+      <div class="tab-body" data-tab-body="skin" hidden>
+        <div class="swatches" role="radiogroup" aria-label="Choose a skin tone" id="swatches"></div>
+        <p class="hint" id="toneLabel"></p>
+      </div>
     </aside>
   </main>
 
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-  <script src="app.js"></script>
+  <script type="module" src="js/main.js"></script>
 </body>
 </html>
