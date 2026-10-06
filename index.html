@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CAPPED — Virtual Hair Studio</title>
+  <meta name="description" content="CAPPED is a concept virtual hair studio. Preview hairstyles across different faces before you commit.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="nav">
+    <a class="brand" href="./">CAPPED</a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#">Styles</a>
+      <a href="#">Lookbook</a>
+      <a href="#" class="active" aria-current="page">Hair Studio</a>
+    </nav>
+    <div class="nav-actions">
+      <span class="saved-count" id="savedCount">Saved (0)</span>
+    </div>
+  </header>
+
+  <main class="studio">
+    <!-- Left: copy + style details -->
+    <section class="intro" aria-labelledby="headline">
+      <p class="eyebrow">Virtual hair studio / 2026</p>
+      <h1 id="headline">See the style.<br>Before you commit.</h1>
+      <p class="lede">Preview every look across different faces, skin tones and textures before you sit in the chair.</p>
+
+      <div class="style-card" aria-live="polite">
+        <div class="style-card-head">
+          <h2 id="styleName">Knotless Braids</h2>
+          <span class="style-tag" id="styleTag">Protective</span>
+        </div>
+        <p class="style-desc" id="styleDesc"></p>
+        <dl class="style-meta">
+          <div><dt>Length</dt><dd id="metaLength"></dd></div>
+          <div><dt>Install</dt><dd id="metaInstall"></dd></div>
+          <div><dt>Lasts</dt><dd id="metaLasts"></dd></div>
+          <div><dt>Upkeep</dt><dd id="metaUpkeep"></dd></div>
+        </dl>
+        <button class="btn btn-primary" id="saveBtn" type="button">Save this look</button>
+        <button class="btn btn-ghost" id="shareBtn" type="button">Copy share link</button>
+      </div>
+    </section>
+
+    <!-- Center: stage -->
+    <section class="stage" aria-label="Preview">
+      <div class="watermark" aria-hidden="true">CAPPED</div>
+
+      <div class="stage-top">
+        <div class="model-pill" id="modelPill">
+          <span class="model-dot"></span>
+          <span id="modelPillName">Amara</span>
+        </div>
+        <div class="view-toggle" role="tablist" aria-label="View mode">
+          <button role="tab" aria-selected="true" data-view="style" class="active">Style</button>
+          <button role="tab" aria-selected="false" data-view="compare">Before / After</button>
+        </div>
+      </div>
+
+      <div class="frame" id="frame">
+        <img class="shot shot-base" id="baseImg" alt="">
+        <img class="shot shot-style" id="styleImg" alt="">
+        <div class="compare-handle" id="compareHandle" aria-hidden="true"><span></span></div>
+        <input class="compare-range" id="compareRange" type="range" min="0" max="100" value="50" aria-label="Before and after slider">
+        <span class="compare-label left">Before</span>
+        <span class="compare-label right">After</span>
+      </div>
+
+      <div class="model-switcher" role="radiogroup" aria-label="Choose a model" id="modelSwitcher"></div>
+    </section>
+
+    <!-- Right: customizer panel -->
+    <aside class="panel" aria-labelledby="panelTitle">
+      <p class="panel-eyebrow">Capped personal stylist</p>
+      <h2 id="panelTitle">Make it yours</h2>
+      <div class="panel-tabs">
+        <span class="active">Hair</span>
+        <span class="muted" title="Coming soon">Colour</span>
+      </div>
+      <div class="style-grid" role="radiogroup" aria-label="Choose a hairstyle" id="styleGrid"></div>
+      <p class="hint">Tip: use <kbd>←</kbd> <kbd>→</kbd> to cycle styles.</p>
+    </aside>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
